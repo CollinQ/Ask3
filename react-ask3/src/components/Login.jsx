@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
-import { useState } from 'react';
 import axios from 'axios';
-import { useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useContext } from 'react';
+import AuthContext from './AuthProvider';
 
-
-
+const LOGIN_URL = '/auth';
 
 
 const Login = () => {
+    const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
 
     const [email, setEmail] = useState();
     const [password, setPass] = useState();
     const [errMsg, setErrMsg] = useState('');
-    const [success, getSuccess] = useState(false);
+    const [success, setSuccess] = useState(false);
 
     useEffect(() => {
         userRef.current.focus();
@@ -24,51 +24,100 @@ const Login = () => {
         setErrMsg('');
     }, [email, password])
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.post(LOGIN_URL,
+                JSON.stringify({ email, password }),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                }
+            );
+            console.log(JSON.stringify(response?.data));
+            //console.log(JSON.stringify(response));
+            const accessToken = response?.data?.accessToken;
+            const roles = response?.data?.roles;
+            setAuth({ email, password, roles, accessToken })
+            setEmail('');
+            setPass('');
+            setSuccess(true);
+        } catch (err) {
+            if (!err?.response) {
+                setErrMsg('No Server Response');
+            }
+            else if (err.response?.status === 400) {
+                setErrMsg('Missing Username or Password');
+            }
+            else if (err.response?.status === 401) {
+                setErrMsg('Unauthorized');
+            }
+            else {
+                setErrMsg('Login Failed');
+            }
+            errRef.current.focus();
+        }
+    }
+
 
     return (
-        <div className="login">
-            <br></br>
-            <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive"> {errMsg}</p>
-            <h1>Login
-            </h1>
-            <form>
-                <label htmlFor="email">
-                    email:
-                    <input
-                        type="text"
-                        id="email"
-                        ref={userRef}
-                        autoComplete="off"
-                        onChange={(e) => setEmail(e.target.value)}
-                        value={email}
-                        required
-                    />
-                </label>
-                <br></br>
-                <label htmlFor="password">
-                    password:
-                    <input
-                        type="password"
-                        id="password"
-                        onChange={(e) => setPass(e.target.value)}
-                        value={password}
-                        required
-                    />
-                    <br></br>
-                    <input type="submit" value="Sign In" />
-                </label>
-            </form>
-            <br />
-            <p>
-                Need an Account?
-                <span className="line">
-                    {/*Sign up router link here*/}
-                    <a href="#"> Sign Up</a>
-                </span>
-            </p>
-            {email} <br></br>
-            {password}
-        </div >
+        < >
+            {success ? (
+                <section>
+                    <h1>You are logged in!</h1>
+                    <br />
+                    <p>
+                        <a href="#">Go to Home</a>
+                    </p>
+                </section>
+            ) : (
+                <section>
+                    < div className="login">
+                        <br></br>
+                        <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive"> {errMsg}</p>
+                        <h1>Login
+                        </h1>
+                        <form onSubmit={handleSubmit}>
+                            <label htmlFor="email">
+                                email:
+                                <input
+                                    type="text"
+                                    id="email"
+                                    ref={userRef}
+                                    autoComplete="off"
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    value={email}
+                                    required
+                                />
+                            </label>
+                            <br></br>
+                            <label htmlFor="password">
+                                password:
+                                <input
+                                    type="password"
+                                    id="password"
+                                    onChange={(e) => setPass(e.target.value)}
+                                    value={password}
+                                    required
+                                />
+                                <br></br>
+                                <input type="submit" value="Sign In" />
+                            </label>
+                        </form>
+                        <br />
+                        <p>
+                            Need an Account?
+                            <span className="line">
+                                {/*Sign up router link here*/}
+                                <a href="#"> Sign Up</a>
+                            </span>
+                        </p>
+                    </div >
+                </section >
+            )
+            }
+        </>
     )
 }
 
