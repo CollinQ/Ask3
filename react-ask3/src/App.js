@@ -1,33 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
-import Navbar from './components/navBar';
-import Questions from './pages/Questions';
-import Login from './pages/Login';
-import Home from './pages';
-import { BrowserRouter as Router, Routes, Route }
-  from 'react-router-dom';
+import Home from './components/Home';
+import Questions from './components/Questions';
+import Login from './components/Login';
+import Navbar from './components/Navbar'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Register from './components/Signup';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Router>
-          <Navbar />
-          <Routes>
-            <Route exact path='/home' exact element={<Home />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/questions' element={<Questions />} />
-          </Routes>
-        </Router>
-        <h1>
-          Ask3
-        </h1>
-      </header>
-      <div>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/questions' element={<Questions />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<Register />} />
+        </Routes>
+      </Router>
+      <p>
 
+      </p>
+      <div>
       </div>
     </div >
   );
 }
 
 export default App;
+
