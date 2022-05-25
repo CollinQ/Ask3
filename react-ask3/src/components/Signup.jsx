@@ -3,17 +3,17 @@ import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "../api/axios";
 
-const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
+const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = '/register';
+const REGISTER_URL = 'http://127.0.0.1:4000/signup';
 
 const Signup = () => {
     const userRef = useRef();
     const errRef = useRef();
 
-    const [user, setUser] = useState('');
-    const [validName, setValidName] = useState(false);
-    const [userFocus, setUserFocus] = useState(false);
+    const [email, setEmail] = useState('');
+    const [validEmail, setValidEmail] = useState(false);
+    const [emailFocus, setEmailFocus] = useState(false);
 
     const [pwd, setPwd] = useState('');
     const [validPwd, setValidPwd] = useState(false);
@@ -31,8 +31,8 @@ const Signup = () => {
     }, [])
 
     useEffect(() => {
-        setValidName(USER_REGEX.test(user));
-    }, [user])
+        setValidEmail(EMAIL_REGEX.test(email));
+    }, [email])
 
     useEffect(() => {
         setValidPwd(PWD_REGEX.test(pwd));
@@ -41,39 +41,39 @@ const Signup = () => {
 
     useEffect(() => {
         setErrMsg('');
-    }, [user, pwd, matchPwd])
+    }, [email, pwd, matchPwd])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         // if button enabled with JS hack
-        const v1 = USER_REGEX.test(user);
+        const v1 = EMAIL_REGEX.test(email);
         const v2 = PWD_REGEX.test(pwd);
         if (!v1 || !v2) {
             setErrMsg("Invalid Entry");
             return;
         }
         try {
+            console.log('registering...')
             const response = await axios.post(REGISTER_URL,
-                JSON.stringify({ user, pwd }),
+                { session: { email: email, password: pwd } },
                 {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            );
-            console.log(response?.data);
-            console.log(response?.accessToken);
-            console.log(JSON.stringify(response))
+                    headers: {
+                        //'X-CSRF-Token': csrfToken,
+                        'Access-Control-Allow-Origin': 'http://127.0.0.1:4000/signup',
+                        'Content-Type': 'application/json',
+                        'Access-Control-Response-Method': 'http://127.0.0.1:4000/signup'
+                    }
+                });
+
             setSuccess(true);
-            //clear state and controlled inputs
-            //need value attrib on inputs for this
-            setUser('');
+            setEmail('');
             setPwd('');
             setMatchPwd('');
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
             } else if (err.response?.status === 409) {
-                setErrMsg('Username Taken');
+                setErrMsg('Email Taken');
             } else {
                 setErrMsg('Registration Failed')
             }
@@ -87,48 +87,47 @@ const Signup = () => {
                 <section>
                     <h1>Success!</h1>
                     <p>
-                        <a href="#">Sign In</a>
+                        <a href="/login">Sign In</a>
                     </p>
                 </section>
             ) : (
-                <section>
+                <section className="reg">
+                    <br />
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Register</h1>
                     <form onSubmit={handleSubmit}>
-                        <label htmlFor="username">
-                            Username:
+                        <label htmlFor="email">
+                            email:
                             <FontAwesomeIcon
-                                icon={validName || !user ? faCheck : faTimes}
-                                className={validName || !user ? "hide" : "invalid"}
+                                icon={validEmail || !email ? faCheck : faTimes}
+                                className={validEmail || !email ? "hide" : "invalid"}
                             />
 
                         </label>
                         <input
                             type="text"
-                            id="username"
+                            id="email"
                             ref={userRef}
                             autoComplete="off"
-                            onChange={(e) => setUser(e.target.value)}
-                            value={user}
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
                             required
-                            aria-invalid={validName ? "false" : "true"}
+                            aria-invalid={validEmail ? "false" : "true"}
                             aria-describedby="uidnote"
-                            onFocus={() => setUserFocus(true)}
-                            onBlur={() => setUserFocus(false)}
+                            onFocus={() => setEmailFocus(true)}
+                            onBlur={() => setEmailFocus(false)}
                         />
-                        <p id="uidnote" className={userFocus && user && !validName ? "instructions" : "offscreen"}>
+                        <p id="uidnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
-                            4 to 24 characters.<br />
-                            Must begin with a letter.<br />
-                            Letters, numbers, underscores, hyphens allowed.
+                            Invalid Email Address
                         </p>
 
 
                         <label htmlFor="password">
-                            Password:
+                            password:
                             <FontAwesomeIcon
-                                icon={validName || !user ? faCheck : faTimes}
-                                className={validName || !user ? "hide" : "invalid"}
+                                icon={validEmail || !email ? faCheck : faTimes}
+                                className={validEmail || !email ? "hide" : "invalid"}
                             />
                         </label>
                         <input
@@ -151,10 +150,10 @@ const Signup = () => {
 
 
                         <label htmlFor="confirm_pwd">
-                            Confirm Password:
+                            confirm password:
                             <FontAwesomeIcon
-                                icon={validName || !user ? faCheck : faTimes}
-                                className={validName || !user ? "hide" : "invalid"}
+                                icon={validEmail || !email ? faCheck : faTimes}
+                                className={validEmail || !email ? "hide" : "invalid"}
                             />
 
                         </label>
@@ -174,12 +173,11 @@ const Signup = () => {
                             Must match the first password input field.
                         </p>
 
-                        <button disabled={!validName || !validPwd || !validMatch ? true : false}>Sign Up</button>
+                        <button disabled={!validEmail || !validPwd || !validMatch ? true : false}>Sign Up</button>
                     </form>
                     <p>
-                        Already registered?<br />
+                        Already registered?
                         <span className="line">
-                            {/*put router link here*/}
                             <a href="/login">Sign In</a>
                         </span>
                     </p>

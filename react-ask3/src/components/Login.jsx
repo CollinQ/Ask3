@@ -3,8 +3,7 @@ import axios from 'axios';
 import { useState, useRef, useEffect, useContext } from 'react';
 import AuthContext from './AuthProvider';
 
-const LOGIN_URL = '/auth';
-
+const LOGIN_URL = 'http://127.0.0.1:4000/login';
 
 const Login = () => {
     const { setAuth } = useContext(AuthContext);
@@ -28,13 +27,17 @@ const Login = () => {
         e.preventDefault();
 
         try {
+            console.log("logging in");
             const response = await axios.post(LOGIN_URL,
-                JSON.stringify({ email, password }),
+                { session: { email: email, password: password } },
                 {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            );
+                    headers: {
+                        //'X-CSRF-Token': csrfToken,
+                        'Access-Control-Allow-Origin': 'http://127.0.0.1:4000/login',
+                        'Content-Type': 'application/json',
+                        'Access-Control-Response-Method': 'http://127.0.0.1:4000/login'
+                    }
+                });
             console.log(JSON.stringify(response?.data));
             //console.log(JSON.stringify(response));
             const accessToken = response?.data?.accessToken;
@@ -68,7 +71,7 @@ const Login = () => {
                     <h1>You are logged in!</h1>
                     <br />
                     <p>
-                        <a href="#">Go to Home</a>
+                        <a href="/">Go to Home</a>
                     </p>
                 </section>
             ) : (
