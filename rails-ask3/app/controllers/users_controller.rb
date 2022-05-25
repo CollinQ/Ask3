@@ -17,13 +17,13 @@ class UsersController < ApplicationController
       reset_session
       log_in @user
     else
-      redirect_to 'INSERT HERE'
+      redirect_to 'http://127.0.0.1'
     end
   end
 
   private
 
-  def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
-  end
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
 end
