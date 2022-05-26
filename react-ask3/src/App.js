@@ -1,6 +1,8 @@
 import './App.css';
 import Home from './components/Home';
 import Questions from './components/Questions';
+import Bottom from './components/Bottom/Bottom';
+import Footer from './components/Footers/Footers';
 import Login from './components/Login';
 import Navbar from './components/Navbar'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -13,7 +15,7 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<><Home /><Bottom /></>} />
           <Route path='/questions' element={<Questions />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Register />} />
@@ -23,6 +25,7 @@ function App() {
 
       </p>
       <div>
+        <Footer />
       </div>
     </div >
   );
