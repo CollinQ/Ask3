@@ -5,7 +5,6 @@ import AuthContext from './AuthProvider';
 
 const LOGIN_URL = 'http://127.0.0.1:4000/login';
 
-
 const Login = () => {
     const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
@@ -30,7 +29,7 @@ const Login = () => {
         try {
             console.log("logging in");
             const response = await axios.post(LOGIN_URL,
-                {session:{email: email, password: password }},
+                { session: { email: email, password: password } },
                 {
                     headers: {
                         //'X-CSRF-Token': csrfToken,
@@ -71,7 +70,7 @@ const Login = () => {
                     <h1>You are logged in!</h1>
                     <br />
                     <p>
-                        <a href="#">Go to Home</a>
+                        <a href="/">Go to Home</a>
                     </p>
                 </section>
             ) : (
@@ -113,7 +112,7 @@ const Login = () => {
                             Need an Account?
                             <span className="line">
                                 {/*Sign up router link here*/}
-                                <a href="#"> Sign Up</a>
+                                <a href="/signup"> Sign Up</a>
                             </span>
                         </p>
                     </div >

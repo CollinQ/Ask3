@@ -14,7 +14,7 @@ h1 {
 {/*NAVBAR*/}
 
 .navbar{
-  background-color: #D0E7E9;
+  background-color: #3A3A38;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -31,15 +31,15 @@ h1 {
 
 .menu a{
   display: flex;
-  color: #3A3A38;
+  color: white;
   text-decoration: none;
   margin: auto 4em;
 }
 
 .menu a:hover {
   transition-duration: .5s;
-  color      : #214566;
-  text-shadow: 1.5px 1.5px #3A3A38;
+  color      : #D0E7E9;
+  text-shadow: 1.5px 1.5px #D0E7E9;
   background : transparent;
   background-color : transparent;
   transform: scale3d(1.02);
@@ -55,7 +55,7 @@ h1 {
 
 .logo {
   font-family: "Helvetica Neue";
-  color: #3A3A38;
+  color: white;
   font-weight: 800;
   align: center;
 }
@@ -94,11 +94,6 @@ h1 {
   display: block;
 }
 
-.login h2 {
-  font-size: 20px;
-  color: black;
-  margin-bottom: 30px;
-}
 
 .login input, .login textarea, .login select {
   width: 100%;
@@ -115,6 +110,97 @@ h1 {
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+{/*REGISTRATION*/}
+.reg {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.reg label {
+  text-align: left;
+  display: block;
+}
+
+.offscreen {
+  position: absolute;
+  left: -9999px;
+}
+
+.reg a {
+  font-family: "Helvetica Neue";
+  font-size: 14px;
+  color: #214566;
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 25px;
+}
+
+
+
+.valid {
+  color: limegreen;
+  margin-left: 0.25rem;
+}
+
+.invalid {
+  color: red;
+  margin-left: 0.25rem;
+}
+
+.errmsg {
+  background-color: lightpink;
+  color: firebrick;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.instructions {
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  background: #000;
+  color: #fff;
+  padding: 0.25rem;
+  position: relative;
+  bottom: -10px;
+}
+
+.instructions > svg {
+  margin-right: 0.25rem;
+}
+
+section {
+  margin: auto;
+  width: 100%;
+  max-width: 420px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem;
+  background-color: white;
+}
+
+input[type="text"],
+input[type="password"],
+button,
+textarea {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  display: block;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex-grow: 1;
+  padding-bottom: 1rem;
 }
 
 
