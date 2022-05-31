@@ -58,7 +58,7 @@ const Signup = () => {
         try {
             console.log('registering...')
             const response = await axios.post(REGISTER_URL,
-                { session: { name: name, email: email, password: pwd, password_confirmation: matchPwd } },
+                { user: { name: name, email: email, password: pwd, password_confirmation: matchPwd } },
                 {
                     headers: {
                         //'X-CSRF-Token': csrfToken,
