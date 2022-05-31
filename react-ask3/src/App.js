@@ -21,8 +21,8 @@ function App() {
           <Route path='/signup' element={<Register />} />
         </Routes>
       </Router>
-      <p>
 
+      <p>
       </p>
       <div>
         <Footer />
