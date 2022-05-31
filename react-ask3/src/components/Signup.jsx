@@ -11,6 +11,9 @@ const Signup = () => {
     const userRef = useRef();
     const errRef = useRef();
 
+    const [name, setName] = useState('');
+    const [nameFocus, setNameFocus] = useState(false);
+
     const [email, setEmail] = useState('');
     const [validEmail, setValidEmail] = useState(false);
     const [emailFocus, setEmailFocus] = useState(false);
@@ -55,7 +58,7 @@ const Signup = () => {
         try {
             console.log('registering...')
             const response = await axios.post(REGISTER_URL,
-                { session: { email: email, password: pwd } },
+                { user: { name: name, email: email, password: pwd, password_confirmation: matchPwd } },
                 {
                     headers: {
                         //'X-CSRF-Token': csrfToken,
@@ -96,6 +99,23 @@ const Signup = () => {
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Register</h1>
                     <form onSubmit={handleSubmit}>
+                        <label htmlFor="name">
+                            name:
+
+                        </label>
+                        <input
+                            type="text"
+                            id="name"
+                            ref={userRef}
+                            autoComplete="off"
+                            onChange={(e) => setName(e.target.value)}
+                            value={name}
+                            required
+                            aria-describedby="uidnote"
+                            onFocus={() => setNameFocus(true)}
+                            onBlur={() => setNameFocus(false)}
+                        />
+
                         <label htmlFor="email">
                             email:
                             <FontAwesomeIcon
