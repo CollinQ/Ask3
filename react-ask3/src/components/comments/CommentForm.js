@@ -1,5 +1,7 @@
 import { useState } from "react";
-import {Form} from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
+import "./comments.css";
+
 const CommentForm = ({
   handleSubmit,
   submitLabel,

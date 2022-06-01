@@ -21,6 +21,7 @@ function App() {
         <Routes>
           <Route path='/' element={<><Home /><Bottom /><Text /><Boxes /></>} />
           <Route path='/questions' element={<AddPost />} />
+          <Route path='/forum' element={<Comments commentsUrl="http://localhost:3004/comments" currentUserId="1" />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Register />} />
         </Routes>
