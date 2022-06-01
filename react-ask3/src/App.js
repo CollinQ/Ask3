@@ -4,7 +4,8 @@ import Questions from './components/Questions';
 import Bottom from './components/Bottom/Bottom';
 import Footer from './components/Footers/Footers';
 import Login from './components/Login';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar'
+import Forum from './components/ForumPost/Forum';
 import AddPost from './components/AddPost';
 import Text from './components/Text/Text';
 import Boxes from './components/Boxes/Boxes';
@@ -20,8 +21,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<><Home /><Bottom /><Text /><Boxes /></>} />
-          <Route path='/questions' element={<Questions />} />
-          <Route path='/forum' element={<Comments commentsUrl="http://localhost:3004/comments" currentUserId="1" />} />
+          <Route path='/questions' element={<Forum/>} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Register />} />
         </Routes>
