@@ -6,6 +6,10 @@ import Footer from './components/Footers/Footers';
 import Login from './components/Login';
 import Navbar from './components/Navbar'
 import Forum from './components/ForumPost/Forum';
+import AddPost from './components/AddPost';
+import Text from './components/Text/Text';
+import Boxes from './components/Boxes/Boxes';
+import Comments from './components/comments/Comments';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Register from './components/Signup';
 
@@ -16,7 +20,7 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path='/' element={<><Home /><Bottom /></>} />
+          <Route path='/' element={<><Home /><Bottom /><Text /><Boxes /></>} />
           <Route path='/questions' element={<Forum/>} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Register />} />

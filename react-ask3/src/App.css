@@ -31,15 +31,16 @@ h1 {
 
 .menu a{
   display: flex;
-  color: white;
+  color: #FFFFFF;
   text-decoration: none;
   margin: auto 4em;
+  padding: auto auto;
 }
 
 .menu a:hover {
   transition-duration: .5s;
-  color      : #D0E7E9;
-  text-shadow: 1.5px 1.5px #D0E7E9;
+  color      : #b0bfcc;
+  text-shadow: 1.5px 1.5px #3A3A38;
   background : transparent;
   background-color : transparent;
   transform: scale3d(1.02);
@@ -159,7 +160,7 @@ h1 {
 }
 
 .instructions {
-  font-size: 0.75rem;
+  font-size: 1.25rem;
   border-radius: 0.5rem;
   background: #000;
   color: #fff;
