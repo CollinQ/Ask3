@@ -2,31 +2,10 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import { useState, useRef, useEffect, useContext } from 'react';
 import AuthContext from './AuthProvider';
-import { init, verifyAnswer, confirmSeller, confirmSale, withdraw } from '../Transaction';
+import { init, verifyAnswer, confirmSeller, confirmSale, withdraw, getBalance, Login, Logout } from '../Transaction';
 //export default class Questions extends Component {
 const Moralis = require('moralis');
-const serverUrl = "https://3bjds9z3ofva.usemoralis.com:2053/server";
-const appId = "ZmLehXquNhSlkY3e2e9oMXXurgtIYarjVeihHqaa";
-Moralis.start({ serverUrl, appId });
 
-async function Login() {
-    let user = Moralis.User.current();
-    if (!user) {
-        try {
-            user = await Moralis.authenticate( { signingMessage: "Authenticate" });
-            await Moralis.enableWeb3();
-            console.log(user);
-            console.log(user.get(`ethAddress`));
-        } catch (error) {
-            console.log(error);
-        }
-    }
-}
-
-async function Logout() {
-    await Moralis.User.logOut();
-    console.log("Logged Out");
-}
 function Questions() {  
     const init = () => {
         init();
@@ -45,13 +24,26 @@ function Questions() {
     const logout = () => {
         Logout();
     }
-    
+    const confirmsale = () => {
+        confirmSale();
+    }
+
+    const confirmseller = () => {
+        confirmSeller();
+    }
+    const Withdraw = () => {
+        withdraw();
+    }
+    const getbalance = () => {
+        getBalance();
+    }
+    //where it says Moralis.Units.ETH(0.1), you can put in a user input value instead of 0.1
     return (
         <div className="Questions">
             <h1>Questions</h1>
             <button onClick={() => login()}>Metamask Login</button>
             <button onClick={() => logout()}>Metamask Logout</button>
-            
+            <button onClick={() => confirmseller()}>Post</button>
             <button onClick={() => verify(Moralis.Units.ETH(0.1))}> Verify Answer </button> 
                 <p>Purchased successfully</p>
             </div>

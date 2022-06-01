@@ -1,9 +1,31 @@
 import Web3 from 'web3';
-
-
 import Transaction from './Smart-Contract/artifacts/contracts/Transaction.sol/Transaction.json';
-
 require('dotenv').config();
+
+
+const Moralis = require('moralis');
+const serverUrl = "https://3bjds9z3ofva.usemoralis.com:2053/server";
+const appId = "ZmLehXquNhSlkY3e2e9oMXXurgtIYarjVeihHqaa";
+Moralis.start({ serverUrl, appId });
+
+export const Login = async () => {
+    let user = Moralis.User.current();
+    if (!user) {
+        try {
+            user = await Moralis.authenticate( { signingMessage: "Authenticate" });
+            await Moralis.enableWeb3();
+            console.log(user);
+            console.log(user.get(`ethAddress`));
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+export const Logout = async () => {
+    await Moralis.User.logOut();
+    console.log("Logged Out");
+}
 
 let selectedAccount;
 let transaction;
@@ -41,10 +63,27 @@ export const init = async () => {
 };
 
 export const verifyAnswer = async (amount) => {
+    const web3 = await Moralis.enableWeb3();
     if (!isInitialized){
         await init();
     }
-    return transaction.methods.confirmPurchase({'value' : amount});
+    let options = {
+        contractAddress: "0xE10dd130f9CD59DC70D6939C029Ccd4b62B0cC1c",
+        functionName: "confirmPurchase",
+        abi: [{
+            "inputs": [],
+            "name": "confirmPurchase",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+          }],
+          params: {
+              
+          },
+          msgValue: amount //insert
+    }
+    await Moralis.executeFunction(options);
+    //return transaction.methods.confirmPurchase({value : amount});
 }
 
 export const confirmSeller = () => {
