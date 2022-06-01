@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import { useState, useRef, useEffect, useContext } from 'react';
 import AuthContext from './AuthProvider';
-
 const LOGIN_URL = 'http://127.0.0.1:4000/login';
 
 const Login = () => {

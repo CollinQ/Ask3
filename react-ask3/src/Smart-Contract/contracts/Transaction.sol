@@ -33,6 +33,7 @@ contract Transaction {
 
     receive() external payable {}
 
+
     function withdraw() external {
         require(msg.sender == ask3, "Only the owner can call this method.");
         ask3.transfer(value/10);

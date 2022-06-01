@@ -8,7 +8,6 @@
     border: 2px solid black;
     margin: auto;
     height: 150px;
-  
   }
   .content p.userimage{
     float:left;
@@ -27,3 +26,6 @@
     vertical-align: middle;
     
   }
+.forum_contanier {
+    padding-top: 20px;
+}
