@@ -1,4 +1,5 @@
 import CommentForm from "./CommentForm";
+import "./comments.css";
 
 const Comment = ({
   comment,

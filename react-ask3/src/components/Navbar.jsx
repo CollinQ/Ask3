@@ -17,7 +17,7 @@ function Navbar() {
   return (
     <nav className="nav">
       <div className="logo">
-      <a href="/" className="link"><img src="logo192.png" alt="poop" /></a>
+        <a href="/" className="link"><img src="logo192.png" alt="poop" /></a>
         <span className="ask"><a href="/" className="link">ask</a></span>
         <span className="num">3</span>
       </div>
@@ -33,7 +33,7 @@ function Navbar() {
           </a>
         </li>
         <li className="nav__item">
-          <a href="/recent" className="nav__link">
+          <a href="/forum" className="nav__link">
             Recent
           </a>
         </li>
