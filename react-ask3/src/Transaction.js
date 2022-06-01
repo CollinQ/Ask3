@@ -37,9 +37,7 @@ const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
 //const CONTRACT_ABI = require("./Smart-Contract/artifacts/contracts/Transaction.sol/Transaction.json");
 
 export const init = async () => {
-
     let provider = window.ethereum;
-
     if (typeof provider !== 'undefined') {
         provider.request({ method: 'eth_requestAccounts' })
         .then((accounts) => {
@@ -62,11 +60,15 @@ export const init = async () => {
     transaction = new web3.eth.Contract(Transaction.abi, CONTRACT_ADDRESS);
 };
 
-export const verifyAnswer = async (amount) => {
-    const web3 = await Moralis.enableWeb3();
+export const confirmBuyer = async () => {
     if (!isInitialized){
         await init();
     }
+    return transaction.methods.confirmPurchase();
+}
+export const verifyAnswer = async (amount) => {
+    const web3 = await Moralis.enableWeb3();
+
     let options = {
         contractAddress: "0xE10dd130f9CD59DC70D6939C029Ccd4b62B0cC1c",
         functionName: "confirmPurchase",
@@ -83,22 +85,24 @@ export const verifyAnswer = async (amount) => {
           msgValue: amount //insert
     }
     await Moralis.executeFunction(options);
-    //return transaction.methods.confirmPurchase({value : amount});
 }
 
-export const confirmSeller = () => {
+export const confirmSellerWallet = async() => {
+    if (!isInitialized){
+        await init();
+    }
     return transaction.methods.confirmSeller();
 }
 
-export const confirmSale = () => {
+export const confirmTransaction = async() => {
     return transaction.methods.confirmSale();
 }
 
-export const withdraw = () => {
+export const Withdraw = async() => {
     return transaction.methods.withdraw();
 }
 
-export const getBalance = () => {
+export const GetBalance = async() => {
     return transaction.methods.getBalance();
 }
 
