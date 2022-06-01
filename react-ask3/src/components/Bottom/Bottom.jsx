@@ -1,6 +1,6 @@
 import React from 'react';
-import Feature from '../feature/Feature.jsx';
-import { Link } from 'react-router-dom'
+//import Feature from '../feature/Feature.jsx';
+//import { Link } from 'react-router-dom'
 import './Bottom.css';
 
 const WhatGPT3 = () => (
