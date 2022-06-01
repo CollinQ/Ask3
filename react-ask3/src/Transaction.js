@@ -40,4 +40,17 @@ export const verifyAnswer = () => {
     return transaction.confirmPurchase();
 }
 
+/*export const confirmSeller = () => {
+    return transaction.confirmSeller();
+}
+
+export const confirmSale = () => {
+    return transaction.confirmSale();
+}
+
+export const withdraw = () => {
+    return transaction.withdraw();
+}*/
+
+
 
