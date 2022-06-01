@@ -32,6 +32,7 @@ class Forum extends Component {
     }
   
   render(){
+    let header = (
     <div class="flex-container">
       <div class="user">
         <p> </p>
@@ -40,25 +41,26 @@ class Forum extends Component {
         </p1>
       </div>
     </div>
+    );
     let c = [];
     let postArray = this.state.posts
     for(let i=0; i<postArray.length; i++){
         c.push(
           <div className="forum_container" id="topic">
-          <div class="content">
-            <p class="userimage">img</p>
-            <p class="date">{postArray[i].created_at}</p>
-            <p></p>
-            <br/>
-            <h class="username">username</h>
-            <br />
-            <h1>{postArray[i].title}</h1>
-          </div>
+            <div class="content">
+                <p class="date">{postArray[i].created_at}</p>
+                <p></p>
+                <br/>
+                <h class="username">TestUser</h>
+                <br />
+                <h1>{postArray[i].title}</h1>
+            </div>
           </div>
         );
     }
   return(
     <div>
+      {header}
       {c}
     </div>
 
