@@ -25,8 +25,8 @@ class SessionsController < ApplicationController
     !current_user.nil?
   end
 
-  def destroy
-    log_out if logged_in?
+  #def destroy
+  #log_out if logged_in?
     #redirect_to root_url
-  end
+  #end
 end
