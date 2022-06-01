@@ -12,9 +12,6 @@ const Blog = () => (
       <p> </p>
 
       <h1>Questions and Answers</h1>
-      <p1>
-        a;lsdkfjasjd;fkalksdjf;ka
-      </p1>
       <p2><a href="/questions" className="nav__link">Questions ></a></p2>
     </div>
 
@@ -23,10 +20,6 @@ const Blog = () => (
       <p> </p>
 
       <h1>Custom Profiles</h1>
-      <p1>
-        a;lsdkfjasjd;fkalksdjf;ka
-        
-      </p1>
       <p2><a href="/profile" className="nav__link">Profile ></a></p2>
     </div>
 
