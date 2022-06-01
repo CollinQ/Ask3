@@ -21,7 +21,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<><Home /><Bottom /><Text /><Boxes /></>} />
-          <Route path='/questions' element={<Forum/>} />
+          <Route path='/questions' element={<AddPost />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Register />} />
         </Routes>
