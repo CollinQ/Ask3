@@ -17,7 +17,6 @@ class UsersController < ApplicationController
       reset_session
       log_in @user
     else
-      redirect_to 'http://127.0.0.1'
     end
   end
 
