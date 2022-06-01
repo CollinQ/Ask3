@@ -1,10 +1,18 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-one:
-  content: MyText
+pi:
+  content: Hi, my teacher recently asked us in precalculus class to find out what pi is. What is pi? Is it a type of food? Why are we talking about pie in math?
   user: one
   post_type: 1
+  title: What is pi?
 
-two:
-  content: MyText
+woodchuck:
+  content: As much wood as a woodchuck could chuck if a woodchuck could chuck wood
   user: two
   post_type: 1
+  title: How much wood could a woodchuck chuck if a woodchuck could chuck wood?
+
+steve_jobs:
+  content: I have to do a research paper, but I do not know who Steve Jobs is. Can someone help me?
+  user: three
+  post_type: 1
+  title: Who is steve jobs?

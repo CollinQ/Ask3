@@ -6,8 +6,8 @@ class MicropostsController < ApplicationController
         
     end
 
-    def destroy
-    end
+    #def destroy
+    #end
 
     private
         def micropost_params
