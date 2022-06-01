@@ -1,0 +1,29 @@
+.user {
+    margin: auto;
+    padding-top: 30px;
+   
+  }
+  .content {
+    width: 800px;
+    border: 2px solid black;
+    margin: auto;
+    height: 150px;
+  
+  }
+  .content p.userimage{
+    float:left;
+    padding: 0 0 ;
+    margin: 0 0 ;
+  }
+  .content p.date{
+    float:right;
+  }
+  .content h.username{
+    float: left;
+    padding: 0px;
+  }
+  .content h1{
+    text-align: center;
+    vertical-align: middle;
+    
+  }
