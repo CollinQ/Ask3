@@ -1,15 +1,18 @@
 import Web3 from 'web3';
 
-//import Transaction from './Smart-Contract/artifacts/contracts/Transaction.json';
-require('./Smart-Contract/.env').config();
+
+import Transaction from './Smart-Contract/artifacts/contracts/Transaction.sol/Transaction.json';
+
+require('dotenv').config();
 
 let selectedAccount;
 let transaction;
+let isInitialized = false;
 
 //const API_KEY = process.env.API_KEY;
 //const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
-const CONTRACT_ABI = require("./Smart-Contract/artifacts/contracts/Transaction.sol/Transaction.json");
+//const CONTRACT_ABI = require("./Smart-Contract/artifacts/contracts/Transaction.sol/Transaction.json");
 
 export const init = async () => {
 
@@ -23,6 +26,7 @@ export const init = async () => {
         })
         .catch((err) => {
             console.log(err);
+            return;
         })
 
         window.ethereum.on('accountsChanged', function (accounts) {
@@ -32,25 +36,32 @@ export const init = async () => {
     }
     const web3 = new Web3(provider); 
     //const networkId = new web3.eth.net.getId();
-
-    const transaction = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS);
+    isInitialized = true;
+    transaction = new web3.eth.Contract(Transaction.abi, CONTRACT_ADDRESS);
 };
 
-export const verifyAnswer = () => {
-    return transaction.confirmPurchase();
+export const verifyAnswer = async (amount) => {
+    if (!isInitialized){
+        await init();
+    }
+    return transaction.methods.confirmPurchase({'value' : amount});
 }
 
-/*export const confirmSeller = () => {
-    return transaction.confirmSeller();
+export const confirmSeller = () => {
+    return transaction.methods.confirmSeller();
 }
 
 export const confirmSale = () => {
-    return transaction.confirmSale();
+    return transaction.methods.confirmSale();
 }
 
 export const withdraw = () => {
-    return transaction.withdraw();
-}*/
+    return transaction.methods.withdraw();
+}
+
+export const getBalance = () => {
+    return transaction.methods.getBalance();
+}
 
 
 
