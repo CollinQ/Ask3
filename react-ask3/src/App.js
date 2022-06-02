@@ -20,8 +20,9 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<><Home /><Bottom /><Text /><Boxes /></>} />
+          <Route path='/questions' element={<AddPost />} />
+          <Route path='/forum' element={<Forum />}></Route>
           <Route path='/addpost' element={<AddPost />} />
-          <Route path='/questions' element={<Questions />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Register />} />
         </Routes>
