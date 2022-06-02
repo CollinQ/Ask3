@@ -4,15 +4,15 @@ require('dotenv').config();
 
 
 const Moralis = require('moralis');
-const serverUrl = "https://3bjds9z3ofva.usemoralis.com:2053/server";
-const appId = "ZmLehXquNhSlkY3e2e9oMXXurgtIYarjVeihHqaa";
+const serverUrl = "https://fs7nsi4sihen.usemoralis.com:2053/server";
+const appId = "UiQpegaPb9VOR72ILT8r2NTEaIPqvc0hvoNL2Pmr";
 Moralis.start({ serverUrl, appId });
 
 export const Login = async () => {
     let user = Moralis.User.current();
     if (!user) {
         try {
-            user = await Moralis.authenticate( { signingMessage: "Authenticate" });
+            user = await Moralis.authenticate({ signingMessage: "Authenticate" });
             await Moralis.enableWeb3();
             console.log(user);
             console.log(user.get(`ethAddress`));
@@ -40,14 +40,14 @@ export const init = async () => {
     let provider = window.ethereum;
     if (typeof provider !== 'undefined') {
         provider.request({ method: 'eth_requestAccounts' })
-        .then((accounts) => {
-            selectedAccount = accounts[0];
-            console.log(`Selected account is ${selectedAccount}`);
-        })
-        .catch((err) => {
-            console.log(err);
-            return;
-        })
+            .then((accounts) => {
+                selectedAccount = accounts[0];
+                console.log(`Selected account is ${selectedAccount}`);
+            })
+            .catch((err) => {
+                console.log(err);
+                return;
+            })
 
         window.ethereum.on('accountsChanged', function (accounts) {
             selectedAccount = accounts[0];
@@ -72,16 +72,16 @@ export const verifyAnswer = async (amount) => {
             "outputs": [],
             "stateMutability": "payable",
             "type": "function"
-          }],
-          params: {
-              
-          },
-          msgValue: amount //insert
+        }],
+        params: {
+
+        },
+        msgValue: amount //insert
     }
     await Moralis.executeFunction(options);
 }
 
-export const confirmSellerWallet = async() => {
+export const confirmSellerWallet = async () => {
     let options = {
         contractAddress: "0xE10dd130f9CD59DC70D6939C029Ccd4b62B0cC1c",
         functionName: "confirmSeller",
@@ -91,7 +91,7 @@ export const confirmSellerWallet = async() => {
             "outputs": [],
             "stateMutability": "payable",
             "type": "function"
-          }],
+        }],
         params: {
         }
     }
@@ -99,7 +99,7 @@ export const confirmSellerWallet = async() => {
     //return transaction.methods.confirmSeller();
 }
 
-export const confirmTransaction = async() => {
+export const confirmTransaction = async () => {
     let options = {
         contractAddress: "0xE10dd130f9CD59DC70D6939C029Ccd4b62B0cC1c",
         functionName: "confirmSale",
@@ -109,14 +109,14 @@ export const confirmTransaction = async() => {
             "outputs": [],
             "stateMutability": "nonpayable",
             "type": "function"
-          }],
-          params: {
-          }
+        }],
+        params: {
+        }
     }
     await Moralis.executeFunction(options);
 }
 
-export const Withdraw = async() => {
+export const Withdraw = async () => {
     let options = {
         contractAddress: "0xE10dd130f9CD59DC70D6939C029Ccd4b62B0cC1c",
         functionName: "withdraw",
@@ -126,15 +126,15 @@ export const Withdraw = async() => {
             "outputs": [],
             "stateMutability": "nonpayable",
             "type": "function"
-          }],
-          params: {
-          }
+        }],
+        params: {
+        }
     }
     await Moralis.executeFunction(options);
     //return transaction.methods.withdraw();
 }
 
-export const GetBalance = async() => {
+export const GetBalance = async () => {
     let options = {
         contractAddress: "0xE10dd130f9CD59DC70D6939C029Ccd4b62B0cC1c",
         functionName: "getBalance",
@@ -142,15 +142,15 @@ export const GetBalance = async() => {
             "inputs": [],
             "name": "getBalance",
             "outputs": [
-              {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-              }
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
             ],
-          }],
-          params: {
-          }
+        }],
+        params: {
+        }
     }
     await Moralis.executeFunction(options);
     //return transaction.methods.getBalance();
