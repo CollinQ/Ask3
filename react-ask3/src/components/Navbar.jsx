@@ -27,11 +27,11 @@ function Navbar() {
             Home
           </a>
         </li>
-        <li className="nav__item">
+        {/*<li className="nav__item">
           <a href="/forum" className="nav__link">
             Forum
           </a>
-        </li>
+  </li>*/}
         <li className="nav__item">
           <a href="/addpost" className="nav__link">
             Add Post
