@@ -10,6 +10,7 @@ const AddPost = () => {
 
     const [subject, setSubject] = useState('');
     const [content, setContent] = useState('');
+    const [name, setName] = useState('');
 
     useEffect(() => {
         userRef.current.focus();
@@ -21,7 +22,7 @@ const AddPost = () => {
         try {
             console.log("logging in");
             const response = await axios.post(POST_URL,
-                { micropost: { content: content, post_type: 1, title: subject } },
+                { micropost: { name: name, content: content, post_type: 1, title: subject } },
                 {
                     headers: {
                         //'X-CSRF-Token': csrfToken,
@@ -33,6 +34,7 @@ const AddPost = () => {
 
             setSubject('');
             setContent('');
+            setName('');
         }
 
         catch (err) {
@@ -45,6 +47,19 @@ const AddPost = () => {
             <br />
             <h1>Submit Post</h1>
             <form className='addPost-form' onSubmit={handleSubmit}>
+                <label>
+                    name:
+                </label>
+                <input
+                    value={name}
+                    type="name"
+                    id="name"
+                    ref={userRef}
+                    autoComplete="off"
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                />
+                <br />
                 <label>
                     subject:
                 </label>
