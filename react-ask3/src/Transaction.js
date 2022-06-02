@@ -54,21 +54,15 @@ export const init = async () => {
             console.log(`Selected account changed to ${selectedAccount}`);
         });
     }
-    const web3 = new Web3(provider); 
+    //const web3 = new Web3(provider); 
+    const web3 = await Moralis.enableWeb3();
+
     //const networkId = new web3.eth.net.getId();
     isInitialized = true;
     transaction = new web3.eth.Contract(Transaction.abi, CONTRACT_ADDRESS);
 };
 
-export const confirmBuyer = async () => {
-    if (!isInitialized){
-        await init();
-    }
-    return transaction.methods.confirmPurchase();
-}
 export const verifyAnswer = async (amount) => {
-    const web3 = await Moralis.enableWeb3();
-
     let options = {
         contractAddress: "0xE10dd130f9CD59DC70D6939C029Ccd4b62B0cC1c",
         functionName: "confirmPurchase",
@@ -88,22 +82,78 @@ export const verifyAnswer = async (amount) => {
 }
 
 export const confirmSellerWallet = async() => {
-    if (!isInitialized){
-        await init();
+    let options = {
+        contractAddress: "0xE10dd130f9CD59DC70D6939C029Ccd4b62B0cC1c",
+        functionName: "confirmSeller",
+        abi: [{
+            "inputs": [],
+            "name": "confirmSeller",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+          }],
+        params: {
+        }
     }
-    return transaction.methods.confirmSeller();
+    await Moralis.executeFunction(options);
+    //return transaction.methods.confirmSeller();
 }
 
 export const confirmTransaction = async() => {
-    return transaction.methods.confirmSale();
+    let options = {
+        contractAddress: "0xE10dd130f9CD59DC70D6939C029Ccd4b62B0cC1c",
+        functionName: "confirmSale",
+        abi: [{
+            "inputs": [],
+            "name": "confirmSale",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+          }],
+          params: {
+          }
+    }
+    await Moralis.executeFunction(options);
 }
 
 export const Withdraw = async() => {
-    return transaction.methods.withdraw();
+    let options = {
+        contractAddress: "0xE10dd130f9CD59DC70D6939C029Ccd4b62B0cC1c",
+        functionName: "withdraw",
+        abi: [{
+            "inputs": [],
+            "name": "withdraw",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+          }],
+          params: {
+          }
+    }
+    await Moralis.executeFunction(options);
+    //return transaction.methods.withdraw();
 }
 
 export const GetBalance = async() => {
-    return transaction.methods.getBalance();
+    let options = {
+        contractAddress: "0xE10dd130f9CD59DC70D6939C029Ccd4b62B0cC1c",
+        functionName: "getBalance",
+        abi: [{
+            "inputs": [],
+            "name": "getBalance",
+            "outputs": [
+              {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+              }
+            ],
+          }],
+          params: {
+          }
+    }
+    await Moralis.executeFunction(options);
+    //return transaction.methods.getBalance();
 }
 
 

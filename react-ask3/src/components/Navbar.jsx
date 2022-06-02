@@ -33,8 +33,8 @@ function Navbar() {
           </a>
         </li>
         <li className="nav__item">
-          <a href="/forum" className="nav__link">
-            Recent
+          <a href="/addpost" className="nav__link">
+            Add Post
           </a>
         </li>
         <li className="nav__item">
