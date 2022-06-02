@@ -4,8 +4,8 @@ require('dotenv').config();
 
 
 const Moralis = require('moralis');
-const serverUrl = "https://fs7nsi4sihen.usemoralis.com:2053/server";
-const appId = "UiQpegaPb9VOR72ILT8r2NTEaIPqvc0hvoNL2Pmr";
+const serverUrl = "https://3bjds9z3ofva.usemoralis.com:2053/server";
+const appId = "ZmLehXquNhSlkY3e2e9oMXXurgtIYarjVeihHqaa";
 Moralis.start({ serverUrl, appId });
 
 export const Login = async () => {
@@ -63,6 +63,7 @@ export const init = async () => {
 };
 
 export const verifyAnswer = async (amount) => {
+    const web3 = await Moralis.enableWeb3();
     let options = {
         contractAddress: "0xE10dd130f9CD59DC70D6939C029Ccd4b62B0cC1c",
         functionName: "confirmPurchase",
@@ -82,6 +83,7 @@ export const verifyAnswer = async (amount) => {
 }
 
 export const confirmSellerWallet = async () => {
+    const web3 = await Moralis.enableWeb3();
     let options = {
         contractAddress: "0xE10dd130f9CD59DC70D6939C029Ccd4b62B0cC1c",
         functionName: "confirmSeller",
@@ -100,6 +102,7 @@ export const confirmSellerWallet = async () => {
 }
 
 export const confirmTransaction = async () => {
+    const web3 = await Moralis.enableWeb3();
     let options = {
         contractAddress: "0xE10dd130f9CD59DC70D6939C029Ccd4b62B0cC1c",
         functionName: "confirmSale",
@@ -117,6 +120,7 @@ export const confirmTransaction = async () => {
 }
 
 export const Withdraw = async () => {
+    const web3 = await Moralis.enableWeb3();
     let options = {
         contractAddress: "0xE10dd130f9CD59DC70D6939C029Ccd4b62B0cC1c",
         functionName: "withdraw",
@@ -135,6 +139,7 @@ export const Withdraw = async () => {
 }
 
 export const GetBalance = async () => {
+    const web3 = await Moralis.enableWeb3();
     let options = {
         contractAddress: "0xE10dd130f9CD59DC70D6939C029Ccd4b62B0cC1c",
         functionName: "getBalance",
