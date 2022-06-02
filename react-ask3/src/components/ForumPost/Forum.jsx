@@ -51,7 +51,7 @@ class Forum extends Component {
                 <p class="date">{postArray[i].created_at}</p>
                 <p></p>
                 <br/>
-                <h class="username">TestUser</h>
+                <h class="username">{postArray[i].name}</h>
                 <br />
                 <h1>{postArray[i].title}</h1>
             </div>
