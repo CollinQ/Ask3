@@ -9,6 +9,7 @@ import Forum from './components/ForumPost/Forum';
 import AddPost from './components/AddPost';
 import Text from './components/Text/Text';
 import Boxes from './components/Boxes/Boxes';
+import Post from './components/Post/Post';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Register from './components/Signup';
 
@@ -20,8 +21,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<><Home /><Bottom /><Text /><Boxes /></>} />
-          <Route path='/questions' element={<AddPost />} />
-          <Route path='/forum' element={<Forum />}></Route>
+          <Route path='/questions' element={<Forum />} />
+          <Route path='/forum' element={<Post />}></Route>
           <Route path='/addpost' element={<AddPost />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Register />} />

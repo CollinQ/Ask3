@@ -28,7 +28,7 @@ function Navbar() {
           </a>
         </li>
         <li className="nav__item">
-          <a href="/questions" className="nav__link">
+          <a href="/forum" className="nav__link">
             Forum
           </a>
         </li>
@@ -38,7 +38,7 @@ function Navbar() {
           </a>
         </li>
         <li className="nav__item">
-          <a href="/profile" className="nav__link">
+          <a href="/questions" className="nav__link">
             Profile
           </a>
         </li>
