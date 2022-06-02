@@ -9,8 +9,7 @@ class MicropostsController < ApplicationController
     end
 
     def create
-        @user = current_user
-        binding.pry
+        @user = User.find(1)
         @micropost = @user.microposts.create(micropost_params)
         if @micropost.save 
             puts 'micropost saved'

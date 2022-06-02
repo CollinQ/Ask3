@@ -1,7 +1,6 @@
 module SessionsHelper
   def log_in(user)
     session[:user_id] = user.id
-    binding.pry
   end
 
   def logged_in?
@@ -15,7 +14,6 @@ module SessionsHelper
   end
 
   def current_user
-    binding.pry
     if (user_id = session[:user_id])
       @current_user ||= User.find_by(id: user_id)
     elsif (user_id = cookies.encrypted[:user_id])
