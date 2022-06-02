@@ -9,7 +9,7 @@ import Forum from './components/ForumPost/Forum';
 import AddPost from './components/AddPost';
 import Text from './components/Text/Text';
 import Boxes from './components/Boxes/Boxes';
-import Post from './components/Post/Post';
+import Post from './components/Post';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Register from './components/Signup';
 

@@ -1,6 +1,22 @@
 .forum_container  {
     padding-top: 25px;
+    padding-bottom: 50px;
   }
+
+.post button {
+  margin: auto;
+  width: 25%;
+  height: 33%;
+  font-size: 14px;
+}
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
   .comment_container {
     padding-top: 10px;
     padding-left: 150px;
