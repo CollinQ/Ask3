@@ -10,7 +10,7 @@ class Post extends Component {
                 <div className="forum_container" id="topic">
                     <div class="content">
                         <p class="userimage"><img src={icon} /></p>
-                        <p class="date">05/19/2022</p>
+                        <p class="date">06/01/2022</p>
                         <p></p>
                         <br />
                         <h class="username">jshen0303</h>
@@ -21,7 +21,7 @@ class Post extends Component {
                 <div className="comment_container">
                     <div class="content">
                         <p class="userimage"><img src={icon} /></p>
-                        <p class="date">05/26/2022</p>
+                        <p class="date">06/01/2022</p>
                         <p class="username">jmun</p>
 
                         <h>It is 3.14</h>
@@ -30,7 +30,7 @@ class Post extends Component {
                 <div className="comment_container">
                     <div class="content">
                         <p class="userimage"><img src={icon} /></p>
-                        <p class="date">05/21/2022</p>
+                        <p class="date">06/01/2022</p>
                         <p class="username">cqian</p>
                         <h>It's 2</h>
                     </div>
@@ -38,7 +38,7 @@ class Post extends Component {
                 <div className="comment_container">
                     <div class="content">
                         <p class="userimage"><img src={icon} /></p>
-                        <p class="date">05/20/2022</p>
+                        <p class="date">06/01/2022</p>
                         <p class="username">c_xu</p>
                         <h>3.14</h>
                     </div>
@@ -46,7 +46,7 @@ class Post extends Component {
                 <div className="comment_container">
                     <div class="content">
                         <p class="userimage"><img src={icon} /></p>
-                        <p class="date">05/20/2022</p>
+                        <p class="date">06/01/2022</p>
                         <p class="username">catli</p>
                         <h>It's 22/7</h>
                     </div>
