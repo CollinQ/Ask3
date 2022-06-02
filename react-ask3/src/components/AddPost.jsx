@@ -21,13 +21,13 @@ const AddPost = () => {
         try {
             console.log("logging in");
             const response = await axios.post(POST_URL,
-                { session: { subject: subject, content: content } },
+                { micropost: { content: content, post_type: 1, title: subject } },
                 {
                     headers: {
                         //'X-CSRF-Token': csrfToken,
-                        'Access-Control-Allow-Origin': 'http://127.0.0.1:4000/login',
+                        'Access-Control-Allow-Origin': 'http://127.0.0.1:4000/post',
                         'Content-Type': 'application/json',
-                        'Access-Control-Response-Method': 'http://127.0.0.1:4000/login'
+                        'Access-Control-Response-Method': 'http://127.0.0.1:4000/post'
                     }
                 });
 
