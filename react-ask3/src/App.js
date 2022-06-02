@@ -20,8 +20,12 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<><Home /><Bottom /><Text /><Boxes /></>} />
+<<<<<<< HEAD
           <Route path='/questions' element={<Forum />} />
           <Route path='/addpost' element={<AddPost />} />
+=======
+          <Route path='/questions' element={<Questions />} />
+>>>>>>> 5ad88906034e52380bcdf939eff07e7e70b6d445
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Register />} />
         </Routes>
